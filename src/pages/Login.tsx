@@ -2,7 +2,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { TiHome } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import Input from "../components/Elements/Input";
-import { LoginForm } from "../types/formAuth";
+import { LoginForm } from "../types/request/formAuth";
 
 const LoginPage = () => {
   const methods = useForm<LoginForm>({

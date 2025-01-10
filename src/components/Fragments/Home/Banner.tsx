@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { homepageBanners } from "../../../contents/homepageBanner";
 import clsxm from "../../../lib/clsxm";
+import { DANGER_TOAST, showToast, WARNING_TOAST } from "../../../lib/toast";
 import useAppStore from "../../../store/useAppStore";
+import { getImage } from "../../../lib/getImage";
 
 const HomeBanner = () => {
   const [bannerIndex, setBannerIndex] = useState(0);
@@ -27,7 +29,7 @@ const HomeBanner = () => {
           )}
         >
           <img
-            src={banner.img}
+            src={getImage(banner.img)}
             alt={`Banner ${index + 1}`}
             className="w-full h-full object-cover"
           />
@@ -52,6 +54,12 @@ const HomeBanner = () => {
             className="btn btn-lg btn-outline-primary rounded-full"
           >
             Test Loading
+          </button>
+          <button
+            onClick={() => showToast("HAI", DANGER_TOAST)}
+            className="btn btn-lg btn-outline-primary rounded-full"
+          >
+            Toast
           </button>
         </div>
       </div>

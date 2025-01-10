@@ -1,25 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaRegPaperPlane } from "react-icons/fa";
 import Divider from "../components/Elements/Divider";
 import ArticleCard from "../components/Fragments/ArticleCard";
 import ArticleSkeleton from "../components/Fragments/ArticleSkeleton";
-import api from "../lib/api";
-import { Article } from "../types/article";
+import request from "../lib/getApi";
+import useAppStore from "../store/useAppStore";
+import { Article } from "../types/response/article";
 
 const ArticlePage = () => {
   const [articles, setArticles] = useState<Article[]>();
+  const setLoading = useAppStore.useSetLoading();
 
-  const fetchData = async () => {
-    try {
-      const response = await api.get("/articles");
-      const data = response.data.data as Article[];
-      setArticles(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  useEffect(() => {
+    const fetchArticles = async () => {
+      setLoading(true);
+      const { isSuccess, data } = await request<Article[]>("GET", "/articles");
 
-  fetchData();
+      if (isSuccess && data) {
+        setArticles(data);
+      }
+
+      setLoading(false);
+    };
+
+    fetchArticles();
+  }, [setLoading]);
 
   return (
     <main className="container py-10">

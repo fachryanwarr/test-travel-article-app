@@ -1,18 +1,52 @@
 import { createSelectorHooks } from "auto-zustand-selectors-hook";
 import { produce } from "immer";
 import { create } from "zustand";
+import { RegisterResponse, User } from "../types/response/authResponse";
+import { removeToken, setToken } from "../lib/cookies";
 
 type AppStoreType = {
   isLoading: boolean;
+  user: User | null;
+  isAuthenticated: boolean;
   setLoading: (status: boolean) => void;
+  setUser: (user: User) => void;
+  login: (userLogin: RegisterResponse) => void;
+  logout: () => void;
 };
 
 const useAppStoreBase = create<AppStoreType>((set) => ({
   isLoading: false,
-  setLoading: (status: boolean) => {
+  user: null,
+  isAuthenticated: false,
+  setLoading: (status) => {
     set(
       produce<AppStoreType>((state) => {
         state.isLoading = status;
+      })
+    );
+  },
+  setUser: (user) => {
+    set(
+      produce<AppStoreType>((state) => {
+        state.user = user;
+      })
+    );
+  },
+  login: (userResponse) => {
+    setToken(userResponse.jwt)
+    set(
+      produce<AppStoreType>((state) => {
+        state.isAuthenticated = true;
+        state.user = userResponse.user;
+      })
+    );
+  },
+  logout: () => {
+    removeToken()
+    set(
+      produce<AppStoreType>((state) => {
+        state.isAuthenticated = false;
+        state.user = null;
       })
     );
   },

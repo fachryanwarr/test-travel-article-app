@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
+import { getImage } from "../../lib/getImage";
 
 const AuthLayout = () => {
   return (
     <main className="h-screen grid grid-cols-2">
       <div className="h-full bg-dark-surface relative">
         <img
-          src="/public/images/authBg.jpg"
+          src={getImage("datacakra-authBg.jpg")}
           alt="Auth Background"
           className="absolute h-full w-full object-cover -z-0"
         />

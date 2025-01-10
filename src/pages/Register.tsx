@@ -2,7 +2,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { TiHome } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import Input from "../components/Elements/Input";
-import { RegisterForm } from "../types/formAuth";
+import { RegisterForm } from "../types/request/formAuth";
 
 const RegisterPage = () => {
   const methods = useForm<RegisterForm>({
@@ -48,7 +48,10 @@ const RegisterPage = () => {
             placeholder="Masukkan password"
           />
 
-          <button type="submit" className="btn btn-lg btn-outline-primary rounded-full w-fit min-w-32">
+          <button
+            type="submit"
+            className="btn btn-lg btn-outline-primary rounded-full w-fit min-w-32"
+          >
             Register
           </button>
         </form>
