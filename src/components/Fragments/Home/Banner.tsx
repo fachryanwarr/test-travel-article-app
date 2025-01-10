@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { homepageBanners } from "../../../contents/homepageBanner";
 import clsxm from "../../../lib/clsxm";
-import { DANGER_TOAST, showToast, WARNING_TOAST } from "../../../lib/toast";
-import useAppStore from "../../../store/useAppStore";
 import { getImage } from "../../../lib/getImage";
+import { DANGER_TOAST, showToast } from "../../../lib/toast";
+import useAppStore from "../../../store/useAppStore";
 
 const HomeBanner = () => {
   const [bannerIndex, setBannerIndex] = useState(0);
