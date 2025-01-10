@@ -1,0 +1,29 @@
+@import "./button.css";
+@import "./header.css";
+@import "./animation.css";
+@import "./typography.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  @apply w-[92%] md:w-[94%] mx-auto;
+}
+
+body {
+  @apply bg-dark-primary;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+.loading-bar {
+  width: 25%;
+  animation: move 2s linear infinite;
+}

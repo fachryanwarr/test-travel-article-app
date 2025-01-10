@@ -1,0 +1,43 @@
+.h1 {
+  @apply text-[32px] md:text-[40px] font-bold leading-tight;
+}
+
+.h2 {
+  @apply text-[28px] md:text-[36px] font-semibold leading-tight;
+}
+
+.h3 {
+  @apply text-[24px] md:text-[32px] font-semibold leading-snug;
+}
+
+.h4 {
+  @apply text-[20px] md:text-[28px] font-medium leading-snug;
+}
+
+.h5 {
+  @apply text-[18px] md:text-[24px] font-medium leading-snug;
+}
+
+.h6 {
+  @apply text-[16px] md:text-[20px] font-medium leading-relaxed;
+}
+
+.h7 {
+  @apply text-[14px] md:text-[18px] font-medium leading-relaxed;
+}
+
+.h8 {
+  @apply text-[12px] md:text-[16px] font-medium leading-relaxed;
+}
+
+.p1 {
+  @apply text-[16px] md:text-[18px] leading-relaxed;
+}
+
+.p2 {
+  @apply text-[14px] md:text-[16px] leading-relaxed;
+}
+
+.p3 {
+  @apply text-[12px] md:text-[14px] leading-relaxed;
+}
