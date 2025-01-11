@@ -2,6 +2,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { TiHome } from "react-icons/ti";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Elements/Input";
+import LoadingButton from "../components/Elements/LoadingButton";
 import withAuth from "../components/hoc/WithAuth";
 import sendRequest from "../lib/getApi";
 import { DANGER_TOAST, showToast, SUCCESS_TOAST } from "../lib/toast";
@@ -67,13 +68,14 @@ const LoginPage = () => {
             validation={{ required: "Wajib diisi" }}
             placeholder="Masukkan password"
           />
-
-          <button
+          <LoadingButton
             type="submit"
-            className="btn btn-lg btn-outline-primary rounded-full w-fit min-w-32"
+            size="lg"
+            variant="outline-primary"
+            className="rounded-full w-fit min-w-32"
           >
             Sign In
-          </button>
+          </LoadingButton>
         </form>
       </FormProvider>
 

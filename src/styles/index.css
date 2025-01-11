@@ -27,3 +27,11 @@ body {
   width: 25%;
   animation: move 2s linear infinite;
 }
+
+.modal {
+  @apply fixed h-[calc(100vh-80px)] w-full z-20 bottom-0 left-0 bg-dark-primary bg-opacity-70 flex items-center justify-center;
+
+  .modal-container {
+    @apply w-[80%] md:w-[50%] p-5 rounded-xl bg-white;
+  }
+}

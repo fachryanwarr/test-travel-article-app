@@ -23,7 +23,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const token = getToken();
 
     if (token) {
-      console.log(1);
       const { isSuccess, data } = await sendRequest<User>("GET", "/users/me");
 
       if (isSuccess && data) {

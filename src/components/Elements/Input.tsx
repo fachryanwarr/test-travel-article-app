@@ -18,6 +18,7 @@ export type InputProps = {
   rightIcon?: IconType;
   leftIconClassName?: string;
   rightIconClassName?: string;
+  light?: boolean;
 } & React.ComponentPropsWithoutRef<"input">;
 
 export default function Input({
@@ -36,6 +37,7 @@ export default function Input({
   leftIconClassName,
   rightIconClassName,
   helperTextClassName,
+  light = false,
   ...rest
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
@@ -58,7 +60,8 @@ export default function Input({
 
       <div
         className={clsxm(
-          "w-full flex relative rounded-full group outline outline-2 outline-white overflow-hidden",
+          "w-full flex relative rounded-full group outline outline-2 overflow-hidden",
+          light ? "outline-dark-primary" : "outline-white",
           className
         )}
       >
@@ -84,10 +87,13 @@ export default function Input({
           disabled={readOnly}
           value={value}
           className={clsxm(
-            "w-full h-full px-5 py-3 rounded-md bg-transparent placeholder:text-bw-300 text-bw-100",
+            "w-full h-full px-5 py-3 rounded-md bg-transparent",
             [LeftIcon && "pl-12", RightIcon && "pr-12"],
             "focus:ring-1 focus:ring-theme-primary-main focus:outline-none",
             readOnly && "cursor-not-allowed bg-gray-100",
+            light
+              ? "placeholder:text-bw-400 text-bw-800"
+              : "placeholder:text-bw-300 text-bw-100",
             className
           )}
           aria-describedby={id}

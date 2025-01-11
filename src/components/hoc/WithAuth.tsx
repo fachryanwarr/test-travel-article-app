@@ -12,11 +12,11 @@ const withAuth = <P extends object>(
 
     if (requireAuth) {
       if (!token) {
-        showToast("Login terlebih dulu!", DANGER_TOAST)
+        showToast("Login terlebih dulu!", DANGER_TOAST);
         return <Navigate to="/auth/login" />;
       }
     } else {
-      return <Navigate to="/" />;
+      if (token) return <Navigate to="/" />;
     }
 
     return <Component {...props} />;

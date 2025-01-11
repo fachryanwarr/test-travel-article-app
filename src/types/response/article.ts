@@ -36,4 +36,7 @@ export type Comment = {
   updatedAt: string;
   publishedAt: string;
   locale: string | null;
+  user: {
+    username: string;
+  };
 };
