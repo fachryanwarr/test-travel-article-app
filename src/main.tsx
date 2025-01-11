@@ -9,11 +9,12 @@ import { AuthProvider } from "./contexts/AuthProvider";
 import ErrorPage from "./pages/404";
 import AboutPage from "./pages/About";
 import ArticlePage from "./pages/Article";
+import ArticleDetailPage from "./pages/ArticleDetail";
 import Homepage from "./pages/Home";
 import LoginPage from "./pages/Login";
+import ProfilePage from "./pages/Profile";
 import RegisterPage from "./pages/Register";
 import "./styles/index.css";
-import ProfilePage from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/article",
         element: <ArticlePage />,
+      },
+      {
+        path: "/article/:id",
+        element: <ArticleDetailPage />,
       },
     ],
   },
@@ -55,8 +60,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <ProfilePage />
-  }
+    element: <ProfilePage />,
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(

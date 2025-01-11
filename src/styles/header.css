@@ -5,7 +5,7 @@
     @apply flex items-center gap-5 text-bw-50 font-semibold tracking-wider h-full;
 
     a, li {
-      @apply h-full px-5 hover:bg-[#404040] flex items-center cursor-pointer;
+      @apply h-full px-2 md:px-5 hover:bg-[#404040] flex items-center cursor-pointer;
     }
   }
 

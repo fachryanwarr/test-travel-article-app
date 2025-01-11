@@ -19,7 +19,7 @@ const Header = () => {
             <Logo />
           </Link>
 
-          <div className="h-full flex items-center gap-5">
+          <div className="h-full flex items-center gap-2 md:gap-5">
             <ul className="menus">
               <Link to={"/article"}>Article</Link>
             </ul>

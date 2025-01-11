@@ -31,7 +31,7 @@ const ArticlePage = () => {
 
   return (
     <main className="container py-10">
-      <div className="">
+      <div>
         <h1 className="h1 text-white">
           Article <FaRegPaperPlane className="inline ml-2 text-primary-300" />
         </h1>

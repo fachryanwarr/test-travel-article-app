@@ -2,6 +2,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { TiHome } from "react-icons/ti";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Elements/Input";
+import withAuth from "../components/hoc/WithAuth";
 import sendRequest from "../lib/getApi";
 import { DANGER_TOAST, showToast, SUCCESS_TOAST } from "../lib/toast";
 import useAppStore from "../store/useAppStore";
@@ -89,4 +90,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withAuth(LoginPage, false);

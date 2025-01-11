@@ -7,6 +7,7 @@ import { showToast, SUCCESS_TOAST } from "../lib/toast";
 import useAppStore from "../store/useAppStore";
 import { RegisterForm } from "../types/request/formAuth";
 import { AuthResponse } from "../types/response/authResponse";
+import withAuth from "../components/hoc/WithAuth";
 
 const RegisterPage = () => {
   const setLoading = useAppStore.useSetLoading();
@@ -94,4 +95,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default withAuth(RegisterPage, false);
