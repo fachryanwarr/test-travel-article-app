@@ -22,7 +22,7 @@ const ArticleDetailPage = () => {
   const navigate = useNavigate();
   const setLoading = useAppStore.useSetLoading();
   const [showCommentModal, setShowCommentModal] = useState(false);
-  const [trigger, setTrigger] = useState(false);
+  // const [trigger, setTrigger] = useState(false);
 
   const fetchArticle = async () => {
     setLoading(true);
@@ -40,7 +40,7 @@ const ArticleDetailPage = () => {
 
   useEffect(() => {
     fetchArticle();
-  }, [trigger]);
+  }, []);
 
   const methods = useForm<{ content: string }>({
     mode: "onTouched",

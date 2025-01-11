@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Toast from "./components/Elements/Toast";
 import AuthLayout from "./components/Layout/AuthLayout";
 import Layout from "./components/Layout/Layout";
-import { AuthProvider } from "./contexts/AuthProvider";
+import { AuthProvider } from "./contexts/authProvider";
 import ErrorPage from "./pages/404";
 import AboutPage from "./pages/About";
 import ArticlePage from "./pages/Article";
