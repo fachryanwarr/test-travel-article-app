@@ -11,7 +11,7 @@ import withAuth from "../components/hoc/WithAuth";
 import ModalLayout from "../components/Layout/ModalLayout";
 import sendRequest from "../lib/getApi";
 import { getImage } from "../lib/getImage";
-import { DANGER_TOAST, showToast, SUCCESS_TOAST } from "../lib/toast";
+import { showToast, SUCCESS_TOAST } from "../lib/toast";
 import useAppStore from "../store/useAppStore";
 import { Article, ArticleDetailResponse } from "../types/response/article";
 import { ApiResponse } from "../types/response/response";
@@ -22,7 +22,7 @@ const ArticleDetailPage = () => {
   const navigate = useNavigate();
   const setLoading = useAppStore.useSetLoading();
   const [showCommentModal, setShowCommentModal] = useState(false);
-  // const [trigger, setTrigger] = useState(false);
+  const [trigger, setTrigger] = useState(false);
 
   const fetchArticle = async () => {
     setLoading(true);
@@ -40,7 +40,7 @@ const ArticleDetailPage = () => {
 
   useEffect(() => {
     fetchArticle();
-  }, []);
+  }, [trigger]);
 
   const methods = useForm<{ content: string }>({
     mode: "onTouched",
@@ -68,8 +68,6 @@ const ArticleDetailPage = () => {
         setShowCommentModal(false);
         methods.reset();
         fetchArticle();
-      } else {
-        showToast("Username atau password salah", DANGER_TOAST);
       }
     };
 
@@ -118,7 +116,12 @@ const ArticleDetailPage = () => {
                 <div className="flex flex-col gap-4 mt-6 p-4 rounded-xl border border-bw-500">
                   {article.comments.length > 0 ? (
                     article.comments.map((comment) => (
-                      <CommentCard key={comment.id} comment={comment} />
+                      <CommentCard
+                        key={comment.id}
+                        comment={comment}
+                        setTrigger={setTrigger}
+                        trigger={trigger}
+                      />
                     ))
                   ) : (
                     <p className="text-bw-100 text-center">
@@ -148,17 +151,17 @@ const ArticleDetailPage = () => {
                 light
               />
 
-              <div className="flex items-center gap-4 w-fit self-end">
+              <div className="flex items-center gap-2 md:gap-4 md:w-fit max-md:justify-center md:self-end">
                 <button
                   type="button"
                   onClick={() => setShowCommentModal(false)}
-                  className="btn btn-lg btn-primary rounded-full w-fit min-w-32"
+                  className="btn btn-md btn-outline-secondary rounded-full w-fit min-w-32"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="btn btn-lg btn-primary rounded-full w-fit min-w-32"
+                  className="btn btn-md btn-primary rounded-full w-fit min-w-32"
                 >
                   Submit
                 </button>

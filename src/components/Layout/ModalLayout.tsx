@@ -1,13 +1,16 @@
 import React, { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import clsxm from "../../lib/clsxm";
 
 type ModalLayoutProps = {
   children: React.ReactNode;
   setShowModal: Dispatch<SetStateAction<boolean>>;
+  containerClassName?: string;
 };
 
 const ModalLayout: React.FC<ModalLayoutProps> = ({
   children,
   setShowModal,
+  containerClassName = "",
 }) => {
   const modalContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,7 +33,10 @@ const ModalLayout: React.FC<ModalLayoutProps> = ({
 
   return (
     <section className="modal">
-      <div className="modal-container" ref={modalContainerRef}>
+      <div
+        className={clsxm("modal-container", containerClassName)}
+        ref={modalContainerRef}
+      >
         {children}
       </div>
     </section>
