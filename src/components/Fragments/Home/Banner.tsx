@@ -3,13 +3,10 @@ import { Link } from "react-router-dom";
 import { homepageBanners } from "../../../contents/homepageBanner";
 import clsxm from "../../../lib/clsxm";
 import { getImage } from "../../../lib/getImage";
-import { DANGER_TOAST, showToast } from "../../../lib/toast";
-import useAppStore from "../../../store/useAppStore";
+import { showToast, SUCCESS_TOAST } from "../../../lib/toast";
 
 const HomeBanner = () => {
   const [bannerIndex, setBannerIndex] = useState(0);
-  const setLoading = useAppStore.useSetLoading();
-  const isLoading = useAppStore.useIsLoading();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,16 +47,10 @@ const HomeBanner = () => {
             Explore More
           </Link>
           <button
-            onClick={() => setLoading(!isLoading)}
+            onClick={() => showToast("Hello World", SUCCESS_TOAST)}
             className="btn btn-lg btn-outline-primary rounded-full"
           >
-            Test Loading
-          </button>
-          <button
-            onClick={() => showToast("HAI", DANGER_TOAST)}
-            className="btn btn-lg btn-outline-primary rounded-full"
-          >
-            Toast
+            Show Toast
           </button>
         </div>
       </div>

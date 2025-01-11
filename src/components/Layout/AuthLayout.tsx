@@ -3,8 +3,8 @@ import { getImage } from "../../lib/getImage";
 
 const AuthLayout = () => {
   return (
-    <main className="h-screen grid grid-cols-2">
-      <div className="h-full bg-dark-surface relative">
+    <main className="h-screen grid md:grid-cols-2">
+      <div className="h-full bg-dark-surface relative max-md:hidden">
         <img
           src={getImage("datacakra-authBg.jpg")}
           alt="Auth Background"

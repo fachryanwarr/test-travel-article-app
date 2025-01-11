@@ -1,17 +1,43 @@
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { TiHome } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Elements/Input";
+import sendRequest from "../lib/getApi";
+import { DANGER_TOAST, showToast, SUCCESS_TOAST } from "../lib/toast";
+import useAppStore from "../store/useAppStore";
 import { LoginForm } from "../types/request/formAuth";
+import { AuthResponse } from "../types/response/authResponse";
 
 const LoginPage = () => {
+  const login = useAppStore.useLogin();
+  const setLoading = useAppStore.useSetLoading();
+  const navigate = useNavigate();
+
   const methods = useForm<LoginForm>({
     mode: "onTouched",
   });
 
   const { handleSubmit } = methods;
-  const onSubmit: SubmitHandler<LoginForm> = async (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<LoginForm> = async (formData) => {
+    const postData = async () => {
+      setLoading(true);
+      const { isSuccess, data } = await sendRequest<AuthResponse>(
+        "POST",
+        "/auth/local",
+        formData
+      );
+
+      setLoading(false);
+      if (isSuccess && data) {
+        login(data);
+        showToast("Login berhasil", SUCCESS_TOAST);
+        navigate("/");
+      } else {
+        showToast("kocak", DANGER_TOAST);
+      }
+    };
+
+    postData();
   };
 
   return (

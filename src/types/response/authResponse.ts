@@ -12,7 +12,7 @@ export type User = {
   locale: string | null;
 };
 
-export type RegisterResponse = {
+export type AuthResponse = {
   jwt: string;
   user: User;
 };

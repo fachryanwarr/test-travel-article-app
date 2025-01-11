@@ -3,10 +3,12 @@ import { FaUserCircle } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import clsxm from "../../lib/clsxm";
+import useAppStore from "../../store/useAppStore";
 import Logo from "../Elements/Logo";
 
 const Header = () => {
   const [showGuestMenu, setShowGuestMenu] = useState(false);
+  const user = useAppStore.useUser();
 
   return (
     <>
@@ -32,10 +34,14 @@ const Header = () => {
                   showGuestMenu && "bg-primary-700/40"
                 )}
               >
-                <RxHamburgerMenu />
+                {user ? (
+                  <span className="p3 font-medium">{user?.username}</span>
+                ) : (
+                  <RxHamburgerMenu />
+                )}
                 <FaUserCircle />
               </div>
-              {showGuestMenu && (
+              {!user && showGuestMenu && (
                 <div className="absolute top-[60px] pt-2 right-0">
                   <div className="dropdown-user">
                     <Link to={"/auth/login"} className="option">

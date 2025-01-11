@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Footer from "./Footer";
-import Header from "./Header";
 import useAppStore from "../../store/useAppStore";
 import LoadingBar from "../Elements/LoadingBar";
-import Toast from "../Elements/Toast";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const Layout = () => {
-  const isLoading = useAppStore.useIsLoading()
+  const isLoading = useAppStore.useIsLoading();
 
   return (
     <main>
@@ -16,7 +15,6 @@ const Layout = () => {
         <Outlet />
       </section>
       <Footer />
-      <Toast />
     </main>
   );
 };

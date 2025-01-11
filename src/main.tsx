@@ -2,8 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import Toast from "./components/Elements/Toast";
 import AuthLayout from "./components/Layout/AuthLayout";
 import Layout from "./components/Layout/Layout";
+import { AuthProvider } from "./contexts/AuthProvider";
 import ErrorPage from "./pages/404";
 import AboutPage from "./pages/About";
 import ArticlePage from "./pages/Article";
@@ -54,6 +56,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <Toast />
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );
