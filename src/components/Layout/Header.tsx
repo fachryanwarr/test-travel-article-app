@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import clsxm from "../../lib/clsxm";
 import useAppStore from "../../store/useAppStore";
 import Logo from "../Elements/Logo";
@@ -9,6 +9,7 @@ import Logo from "../Elements/Logo";
 const Header = () => {
   const [showGuestMenu, setShowGuestMenu] = useState(false);
   const user = useAppStore.useUser();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -27,6 +28,11 @@ const Header = () => {
               className="h-full flex items-center relative cursor-pointer"
               onMouseEnter={() => setShowGuestMenu(true)}
               onMouseLeave={() => setShowGuestMenu(false)}
+              onClick={() => {
+                if (user) {
+                  navigate("/profile");
+                }
+              }}
             >
               <div
                 className={clsxm(

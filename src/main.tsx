@@ -13,6 +13,7 @@ import Homepage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import "./styles/index.css";
+import ProfilePage from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/profile",
+    element: <ProfilePage />
+  }
 ]);
 
 createRoot(document.getElementById("root")!).render(

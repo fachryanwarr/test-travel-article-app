@@ -1,8 +1,6 @@
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
 
-  const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-
   const months = [
     "Januari",
     "Februari",
@@ -18,10 +16,9 @@ export function formatDate(dateString: string): string {
     "Desember",
   ];
 
-  const day = days[date.getUTCDay()];
   const dd = date.getUTCDate().toString().padStart(2, "0");
   const month = months[date.getUTCMonth()];
   const yyyy = date.getUTCFullYear();
 
-  return `${day}, ${dd} ${month} ${yyyy}`;
+  return `${dd} ${month} ${yyyy}`;
 }

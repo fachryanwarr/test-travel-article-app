@@ -1,17 +1,41 @@
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { TiHome } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Elements/Input";
+import sendRequest from "../lib/getApi";
+import { showToast, SUCCESS_TOAST } from "../lib/toast";
+import useAppStore from "../store/useAppStore";
 import { RegisterForm } from "../types/request/formAuth";
+import { AuthResponse } from "../types/response/authResponse";
 
 const RegisterPage = () => {
+  const setLoading = useAppStore.useSetLoading();
+  const login = useAppStore.useLogin();
+  const navigate = useNavigate();
+
   const methods = useForm<RegisterForm>({
     mode: "onTouched",
   });
 
   const { handleSubmit } = methods;
-  const onSubmit: SubmitHandler<RegisterForm> = async (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<RegisterForm> = async (formData) => {
+    const postData = async () => {
+      setLoading(true);
+      const { isSuccess, data } = await sendRequest<AuthResponse>(
+        "POST",
+        "/auth/local/register",
+        formData
+      );
+
+      setLoading(false);
+      if (isSuccess && data) {
+        login(data);
+        showToast("Berhasil membuat akun", SUCCESS_TOAST);
+        navigate("/");
+      }
+    };
+
+    postData();
   };
 
   return (

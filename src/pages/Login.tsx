@@ -33,7 +33,7 @@ const LoginPage = () => {
         showToast("Login berhasil", SUCCESS_TOAST);
         navigate("/");
       } else {
-        showToast("kocak", DANGER_TOAST);
+        showToast("Username atau password salah", DANGER_TOAST);
       }
     };
 
