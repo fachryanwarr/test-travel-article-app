@@ -22,6 +22,10 @@
   @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white disabled:bg-primary-100 disabled:text-primary-400;
 }
 
+.btn-secondary {
+  @apply bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 text-white disabled:bg-primary-100 disabled:text-primary-400;
+}
+
 .btn-outline-primary {
   @apply bg-transparent text-white outline outline-2 outline-primary-500 hover:bg-primary-600 active:bg-primary-700 disabled:bg-white/10 disabled:text-white/60;
 }

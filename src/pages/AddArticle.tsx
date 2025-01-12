@@ -3,6 +3,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Divider from "../components/Elements/Divider";
 import Input from "../components/Elements/Input";
+import LoadingButton from "../components/Elements/LoadingButton";
 import SelectInput from "../components/Elements/SelectInput";
 import TextArea from "../components/Elements/Textarea";
 import withAuth from "../components/hoc/WithAuth";
@@ -23,7 +24,7 @@ const AddArticlePage = () => {
   const [isImageError, setImageError] = useState(false);
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const getCategories = async () => {
       setLoading(true);
       const { isSuccess, data } = await sendRequest<ApiResponse<Category[]>>(
         "GET",
@@ -37,7 +38,7 @@ const AddArticlePage = () => {
       setLoading(false);
     };
 
-    fetchArticles();
+    getCategories();
   }, [setLoading]);
 
   const methods = useForm<ArticleForm>({
@@ -65,7 +66,6 @@ const AddArticlePage = () => {
     };
 
     postData();
-    console.log(formData);
   };
 
   return (
@@ -160,12 +160,14 @@ const AddArticlePage = () => {
             >
               Cancel
             </Link>
-            <button
+            <LoadingButton
               type="submit"
-              className="btn btn-md btn-primary rounded-full min-w-32"
+              size="md"
+              variant="primary"
+              className="rounded-full min-w-32"
             >
               Submit
-            </button>
+            </LoadingButton>
           </div>
         </form>
       </FormProvider>

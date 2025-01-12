@@ -1,3 +1,5 @@
+import { User } from "./authResponse";
+
 export type ArticleResponse = {
   data: Article[];
   meta: {
@@ -22,6 +24,7 @@ export type Article = {
   locale: string | null;
   comments: Comment[];
   category: Category;
+  user: User;
 };
 
 export type Pagination = {

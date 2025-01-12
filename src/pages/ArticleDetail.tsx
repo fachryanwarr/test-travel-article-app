@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaRegTrashCan } from "react-icons/fa6";
 import { IoReturnUpBack } from "react-icons/io5";
-import { useNavigate, useParams } from "react-router-dom";
+import { LuPencilLine } from "react-icons/lu";
+import { Link, useParams } from "react-router-dom";
 import Divider from "../components/Elements/Divider";
 import Input from "../components/Elements/Input";
 import ArticleDetailSkeleton from "../components/Fragments/ArticleDetailSekeleton";
 import CommentCard from "../components/Fragments/CommentCard";
+import DeleteArticleModal from "../components/Fragments/DeleteArticleModal";
 import withAuth from "../components/hoc/WithAuth";
 import ModalLayout from "../components/Layout/ModalLayout";
+import { formatDate } from "../lib/formater";
 import sendRequest from "../lib/getApi";
 import { getImage } from "../lib/getImage";
 import { showToast, SUCCESS_TOAST } from "../lib/toast";
@@ -19,16 +22,18 @@ import { ApiResponse } from "../types/response/response";
 const ArticleDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [article, setArticle] = useState<Article>();
-  const navigate = useNavigate();
   const setLoading = useAppStore.useSetLoading();
+  const user = useAppStore.useUser();
+
   const [showCommentModal, setShowCommentModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [trigger, setTrigger] = useState(false);
 
   const fetchArticle = async () => {
     setLoading(true);
     const { isSuccess, data } = await sendRequest<ArticleDetailResponse>(
       "GET",
-      `/articles/${id}?populate[comments][populate][user]=*`
+      `/articles/${id}?populate[comments][populate][user]=*&populate[user]=*`
     );
 
     if (isSuccess && data) {
@@ -81,19 +86,43 @@ const ArticleDetailPage = () => {
   return (
     <main className="container py-10">
       <div>
-        <button
-          onClick={() => navigate(-1)}
+        <Link
+          to={"/article"}
           className="text-bw-100 hover:text-bw-50 flex items-center gap-2 font-medium"
         >
           <IoReturnUpBack className="text-xl" />
           Back
-        </button>
+        </Link>
         {article ? (
           <>
-            <h3 className="h3 font-bold text-white">{article?.title}</h3>
+            <div className="flex items-center justify-between gap-4">
+              <h3 className="h3 font-bold text-white">{article?.title}</h3>
+              {user && user.username === article.user.username && (
+                <div className="flex items-center gap-4">
+                  <Link
+                    to={`/article/${id}/update`}
+                    className="btn btn-md btn-secondary rounded-full"
+                  >
+                    <LuPencilLine />
+                    Edit Article
+                  </Link>
+                  <button
+                    onClick={() => setShowDeleteModal(true)}
+                    className="btn btn-md btn-outline-primary rounded-full"
+                  >
+                    <FaRegTrashCan />
+                    Delete Article
+                  </button>
+                </div>
+              )}
+            </div>
             <Divider className="mt-4 bg-bw-100" />
             <section className="md:grid md:grid-cols-5 mt-5 gap-6">
               <div className="md:col-span-3 flex flex-col gap-5">
+                <p className="p3 text-bw-50">
+                  Published at {formatDate(article.publishedAt)}, by{" "}
+                  <b>{article.user.username}</b>
+                </p>
                 <img
                   src={article?.cover_image_url}
                   alt={article?.title}
@@ -169,6 +198,9 @@ const ArticleDetailPage = () => {
             </form>
           </FormProvider>
         </ModalLayout>
+      )}
+      {id && showDeleteModal && (
+        <DeleteArticleModal documentId={id} setShowModal={setShowDeleteModal} />
       )}
     </main>
   );

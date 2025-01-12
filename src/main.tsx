@@ -8,14 +8,15 @@ import Layout from "./components/Layout/Layout";
 import { AuthProvider } from "./contexts/authProvider";
 import ErrorPage from "./pages/404";
 import AboutPage from "./pages/About";
+import AddArticlePage from "./pages/AddArticle";
 import ArticlePage from "./pages/Article";
 import ArticleDetailPage from "./pages/ArticleDetail";
 import Homepage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/Profile";
 import RegisterPage from "./pages/Register";
+import UpdateArticle from "./pages/UpdateArticle";
 import "./styles/index.css";
-import AddArticlePage from "./pages/AddArticle";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/article/add",
         element: <AddArticlePage />,
+      },
+      {
+        path: "/article/:id/update",
+        element: <UpdateArticle />,
       },
     ],
   },
