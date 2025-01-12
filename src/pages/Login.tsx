@@ -5,7 +5,7 @@ import Input from "../components/Elements/Input";
 import LoadingButton from "../components/Elements/LoadingButton";
 import withAuth from "../components/hoc/WithAuth";
 import sendRequest from "../lib/getApi";
-import { DANGER_TOAST, showToast, SUCCESS_TOAST } from "../lib/toast";
+import { showToast, SUCCESS_TOAST } from "../lib/toast";
 import useAppStore from "../store/useAppStore";
 import { LoginForm } from "../types/request/formAuth";
 import { AuthResponse } from "../types/response/authResponse";
@@ -34,8 +34,6 @@ const LoginPage = () => {
         login(data);
         showToast("Login berhasil", SUCCESS_TOAST);
         navigate("/");
-      } else {
-        showToast("Username atau password salah", DANGER_TOAST);
       }
     };
 

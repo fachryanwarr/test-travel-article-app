@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import api from "./api";
 import { getToken } from "./cookies";
 import { DANGER_TOAST, showToast } from "./toast";
@@ -17,28 +18,28 @@ const sendRequest = async <T>(
   data: object | null = null,
   params: SendRequestParams = {}
 ): Promise<ApiResponse<T>> => {
-  const token = getToken();
-
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-  };
-
-  if (
-    token &&
-    endpoint !== "/auth/local" &&
-    endpoint !== "/auth/local/register"
-  ) {
-    headers["Authorization"] = `Bearer ${token}`;
-  }
-
-  const filteredParams = Object.fromEntries(
-    Object.entries(params).filter(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ([_, value]) => value !== "" && value !== null && value !== undefined
-    )
-  );
-
   try {
+    const token = getToken();
+
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (
+      token &&
+      endpoint !== "/auth/local" &&
+      endpoint !== "/auth/local/register"
+    ) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    const filteredParams = Object.fromEntries(
+      Object.entries(params).filter(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ([_, value]) => value !== "" && value !== null && value !== undefined
+      )
+    );
+
     const response = await api({
       method,
       url: endpoint,
@@ -53,7 +54,12 @@ const sendRequest = async <T>(
     };
   } catch (error) {
     console.error("Error in API request:", error);
-    showToast(error as string, DANGER_TOAST);
+    if (error instanceof AxiosError) {
+      showToast(
+        error.response?.data?.error?.message || "Service unavailable",
+        DANGER_TOAST
+      );
+    }
     return {
       isSuccess: false,
       data: null,
