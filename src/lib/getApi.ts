@@ -7,10 +7,15 @@ type ApiResponse<T> = {
   data: T | null;
 };
 
+type SendRequestParams = {
+  [key: string]: string | number;
+};
+
 const sendRequest = async <T>(
   method: "GET" | "POST" | "PUT" | "DELETE",
   endpoint: string,
-  data: object | null = null
+  data: object | null = null,
+  params: SendRequestParams = {}
 ): Promise<ApiResponse<T>> => {
   const token = getToken();
 
@@ -18,9 +23,20 @@ const sendRequest = async <T>(
     "Content-Type": "application/json",
   };
 
-  if (token && endpoint !== "/auth/local" && endpoint !== "/auth/local/register") {
+  if (
+    token &&
+    endpoint !== "/auth/local" &&
+    endpoint !== "/auth/local/register"
+  ) {
     headers["Authorization"] = `Bearer ${token}`;
   }
+
+  const filteredParams = Object.fromEntries(
+    Object.entries(params).filter(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ([_, value]) => value !== "" && value !== null && value !== undefined
+    )
+  );
 
   try {
     const response = await api({
@@ -28,6 +44,7 @@ const sendRequest = async <T>(
       url: endpoint,
       data,
       headers,
+      params: filteredParams,
     });
 
     return {

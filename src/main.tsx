@@ -6,7 +6,6 @@ import Toast from "./components/Elements/Toast";
 import AuthLayout from "./components/Layout/AuthLayout";
 import Layout from "./components/Layout/Layout";
 import { AuthProvider } from "./contexts/authProvider";
-import ErrorPage from "./pages/404";
 import AboutPage from "./pages/About";
 import AddArticlePage from "./pages/AddArticle";
 import ArticlePage from "./pages/Article";
@@ -22,7 +21,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

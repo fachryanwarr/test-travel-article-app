@@ -9,10 +9,10 @@ const ArticleCard = ({ article }: { article: Article }) => {
   };
 
   return (
-    <div className="flex h-56 w-full rounded-xl overflow-hidden p-4 border border-white">
+    <div className="flex h-32 md:h-56 w-full rounded-xl overflow-hidden p-4 border border-white">
       <Link
         to={`/article/${article.documentId}`}
-        className="h-full rounded-lg w-72 overflow-hidden cursor-pointer relative group shrink-0"
+        className="h-full rounded-lg w-36 md:w-72 overflow-hidden cursor-pointer relative group shrink-0"
       >
         <img
           src={article.cover_image_url || getImage("datacakra-banner1.jpg")}
@@ -22,7 +22,7 @@ const ArticleCard = ({ article }: { article: Article }) => {
         />
       </Link>
 
-      <div className="px-6 flex flex-col justify-between gap-5">
+      <div className="px-3 md:px-6 flex flex-col justify-between gap-5">
         <div>
           <Link
             to={`/article/${article.documentId}`}

@@ -33,3 +33,7 @@
 .btn-outline-secondary {
   @apply bg-transparent text-bw-800 outline outline-2 outline-bw-800 hover:bg-dark-primary active:bg-dark-surface hover:text-white;
 }
+
+.btn-white {
+  @apply bg-white text-dark-primary hover:bg-gray-100;
+}

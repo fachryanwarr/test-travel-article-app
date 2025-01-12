@@ -33,7 +33,12 @@ const ArticleDetailPage = () => {
     setLoading(true);
     const { isSuccess, data } = await sendRequest<ArticleDetailResponse>(
       "GET",
-      `/articles/${id}?populate[comments][populate][user]=*&populate[user]=*`
+      `/articles/${id}`,
+      null,
+      {
+        "populate[comments][populate][user]": "*",
+        "populate[user]": "*",
+      }
     );
 
     if (isSuccess && data) {
@@ -84,7 +89,7 @@ const ArticleDetailPage = () => {
   };
 
   return (
-    <main className="container py-10">
+    <main className="container py-5 md:py-10">
       <div>
         <Link
           to={"/article"}
@@ -95,10 +100,10 @@ const ArticleDetailPage = () => {
         </Link>
         {article ? (
           <>
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <h3 className="h3 font-bold text-white">{article?.title}</h3>
               {user && user.username === article.user.username && (
-                <div className="flex items-center gap-4">
+                <div className="max-md:w-full max-md:justify-center flex items-center gap-4">
                   <Link
                     to={`/article/${id}/update`}
                     className="btn btn-md btn-secondary rounded-full"
@@ -117,7 +122,7 @@ const ArticleDetailPage = () => {
               )}
             </div>
             <Divider className="mt-4 bg-bw-100" />
-            <section className="md:grid md:grid-cols-5 mt-5 gap-6">
+            <section className="grid md:grid-cols-5 mt-5 gap-10 md:gap-6">
               <div className="md:col-span-3 flex flex-col gap-5">
                 <p className="p3 text-bw-50">
                   Published at {formatDate(article.publishedAt)}, by{" "}
@@ -133,8 +138,8 @@ const ArticleDetailPage = () => {
               </div>
 
               <div className="md:col-span-2 md:px-5 max-md:w-full">
-                <div className="flex items-center justify-between">
-                  <h6 className="h6 text-bw-100">Comments</h6>
+                <div className="flex items-center md:justify-between gap-4">
+                  <h6 className="h5 text-bw-100">Comments</h6>
                   <button
                     onClick={() => setShowCommentModal(true)}
                     className="btn btn-icon btn-outline-primary aspect-square rounded-full"

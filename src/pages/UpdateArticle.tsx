@@ -107,7 +107,7 @@ const UpdateArticlePage = () => {
   }, [article, methods]);
 
   return (
-    <main className="container py-10">
+    <main className="container py-5 md:py-10">
       <div className="flex items-center justify-between gap-5">
         <h1 className="h3 font-bold text-white">Update Article</h1>
       </div>

@@ -69,7 +69,7 @@ const AddArticlePage = () => {
   };
 
   return (
-    <main className="container py-10">
+    <main className="container py-5 md:py-10">
       <div className="flex items-center justify-between gap-5">
         <h1 className="h3 font-bold text-white">Add Article</h1>
       </div>
@@ -100,7 +100,6 @@ const AddArticlePage = () => {
           <Input
             id="cover_image_url"
             label="Cover Image URL"
-            type="search"
             validation={{ required: "Image Wajib diisi" }}
             placeholder="Masukkan URL Image"
             className="rounded-lg"
