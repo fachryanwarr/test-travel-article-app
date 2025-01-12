@@ -90,7 +90,7 @@ const ArticleDetailPage = () => {
         </button>
         {article ? (
           <>
-            <h1 className="h1 text-white">{article?.title}</h1>
+            <h3 className="h3 font-bold text-white">{article?.title}</h3>
             <Divider className="mt-4 bg-bw-100" />
             <section className="md:grid md:grid-cols-5 mt-5 gap-6">
               <div className="md:col-span-3 flex flex-col gap-5">

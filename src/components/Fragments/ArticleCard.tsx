@@ -22,13 +22,20 @@ const ArticleCard = ({ article }: { article: Article }) => {
         />
       </Link>
 
-      <div className="px-6 flex flex-col gap-2">
-        <Link
-          to={`/article/${article.documentId}`}
-          className="text-bw-50 hover:text-bw-100 h4 font-bold"
-        >
-          {article.title}
-        </Link>
+      <div className="px-6 flex flex-col justify-between gap-5">
+        <div>
+          <Link
+            to={`/article/${article.documentId}`}
+            className="text-bw-50 hover:text-bw-100 h4 font-bold"
+          >
+            {article.title}
+          </Link>
+          {article.category?.name && (
+            <p className="p3 text-white font-medium capitalize px-3 py-1 rounded-lg w-fit mt-2 bg-primary-500">
+              {article.category?.name}
+            </p>
+          )}
+        </div>
         <p className="p3 text-bw-200">{formatDate(article.publishedAt)}</p>
       </div>
     </div>

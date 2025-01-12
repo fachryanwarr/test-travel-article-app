@@ -1,6 +1,8 @@
 export type ArticleResponse = {
   data: Article[];
-  meta: Pagination;
+  meta: {
+    pagination: Pagination;
+  };
 };
 
 export type ArticleDetailResponse = {
@@ -19,6 +21,7 @@ export type Article = {
   publishedAt: string;
   locale: string | null;
   comments: Comment[];
+  category: Category;
 };
 
 export type Pagination = {
@@ -39,4 +42,15 @@ export type Comment = {
   user: {
     username: string;
   };
+};
+
+export type Category = {
+  id: number;
+  documentId: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string | null;
 };

@@ -7,7 +7,6 @@ import clsxm from "../../lib/clsxm";
 
 export type InputProps = {
   id: string;
-  value?: string;
   label?: string;
   labelClassName?: string;
   helperText?: string;
@@ -23,7 +22,6 @@ export type InputProps = {
 
 export default function Input({
   id,
-  value,
   label,
   labelClassName,
   helperText,
@@ -60,8 +58,8 @@ export default function Input({
 
       <div
         className={clsxm(
-          "w-full flex relative rounded-full group outline outline-2 overflow-hidden",
-          light ? "outline-dark-primary" : "outline-white",
+          "w-full flex relative rounded-full group ring-1 overflow-hidden",
+          light ? "ring-dark-primary" : "ring-gray-300",
           className
         )}
       >
@@ -85,11 +83,10 @@ export default function Input({
           name={id}
           readOnly={readOnly}
           disabled={readOnly}
-          value={value}
           className={clsxm(
             "w-full h-full px-5 py-3 rounded-md bg-transparent",
             [LeftIcon && "pl-12", RightIcon && "pr-12"],
-            "focus:ring-1 focus:ring-theme-primary-main focus:outline-none",
+            "focus:ring-1 focus:ring-white focus:outline-none",
             readOnly && "cursor-not-allowed bg-gray-100",
             light
               ? "placeholder:text-bw-400 text-bw-800"
