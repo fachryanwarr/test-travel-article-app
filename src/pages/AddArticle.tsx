@@ -100,6 +100,7 @@ const AddArticlePage = () => {
           <Input
             id="cover_image_url"
             label="Cover Image URL"
+            type="search"
             validation={{ required: "Image Wajib diisi" }}
             placeholder="Masukkan URL Image"
             className="rounded-lg"

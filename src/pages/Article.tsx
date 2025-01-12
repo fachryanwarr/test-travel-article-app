@@ -25,7 +25,7 @@ const ArticlePage = () => {
       setLoading(true);
       const { isSuccess, data } = await sendRequest<ArticleResponse>(
         "GET",
-        "/articles?populate[category]=*"
+        `/articles?populate[category]=*&pagination[pageSize]=10&pagination[page]=${pageNumber}`
       );
 
       if (isSuccess && data) {

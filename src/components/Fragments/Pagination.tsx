@@ -5,6 +5,7 @@ import {
   MdOutlineSkipNext,
   MdOutlineSkipPrevious,
 } from "react-icons/md";
+import clsxm from "../../lib/clsxm";
 
 const PaginationControl = ({
   pageNumber,
@@ -38,13 +39,25 @@ const PaginationControl = ({
       >
         <GrFormPrevious />
       </button>
-      <button className="rounded-lg text-white btn-primary btn p-1 w-8 h-8 pointer-events-none">
-        {pageNumber}
-      </button>
+
+      {Array.from({ length: lastPage }, (_, index) => (
+        <button
+          onClick={() => setPageNumber(index + 1)}
+          className={clsxm(
+            "rounded-lg text-white btn p-1 w-8 h-8",
+            pageNumber === index + 1
+              ? "btn-primary pointer-events-none outline outline-primary-500"
+              : "btn-outline-primary"
+          )}
+        >
+          {index + 1}
+        </button>
+      ))}
+
       <button
         className="rounded-lg text-xl text-white btn p-1 w-7 h-7 btn-outline-primary"
-        onClick={() => setPageNumber(pageNumber - 1)}
-        disabled={pageNumber == 1}
+        onClick={() => setPageNumber(pageNumber + 1)}
+        disabled={pageNumber == lastPage}
       >
         <MdNavigateNext />
       </button>
