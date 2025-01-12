@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { homepageBanners } from "../../../contents/homepageBanner";
 import clsxm from "../../../lib/clsxm";
 import { getImage } from "../../../lib/getImage";
-import { showToast, SUCCESS_TOAST } from "../../../lib/toast";
 
 const HomeBanner = () => {
   const [bannerIndex, setBannerIndex] = useState(0);
@@ -46,12 +45,6 @@ const HomeBanner = () => {
           <Link to={"/article"} className="btn btn-lg btn-primary rounded-full">
             Explore More
           </Link>
-          <button
-            onClick={() => showToast("Hello World", SUCCESS_TOAST)}
-            className="btn btn-lg btn-outline-primary rounded-full"
-          >
-            Show Toast
-          </button>
         </div>
       </div>
       <div className="absolute left-0 top-0 -z-10 h-full w-full bg-gradient-to-b from-dark-primary/90 via-transparent to-dark-primary"></div>

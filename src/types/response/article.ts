@@ -52,6 +52,7 @@ export type Comment = {
   user: {
     username: string;
   };
+  article: Article;
 };
 
 export type Category = {
