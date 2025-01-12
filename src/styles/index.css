@@ -48,10 +48,10 @@ select {
 
   .table {
     @apply shadow-lg rounded-xl overflow-hidden w-full align-middle;
-  
+
     tbody {
       @apply text-center;
-      
+
       tr:nth-child(even) {
         @apply bg-blue-600 bg-opacity-25 text-white;
       }
@@ -59,14 +59,41 @@ select {
         @apply bg-blue-700 bg-opacity-25 text-white;
       }
     }
-  
+
     th {
       @apply bg-blue-700 text-white font-semibold max-md:min-w-40;
     }
-  
+
     th,
     td {
       @apply px-5 py-3;
     }
   }
+}
+
+.styled-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+  background: #FFC8C9;
+  border-radius: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+  background: #fc5b5f;
+  border-radius: 8px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #f43f43;
+}
+
+.styled-scrollbar::-webkit-scrollbar-horizontal {
+  height: 8px;
+}
+
+.MuiChartsAxis-label, tspan {
+  color: white !important;
 }

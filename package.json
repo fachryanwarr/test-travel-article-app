@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.3.1",
+    "@mui/x-charts": "^7.23.6",
     "auto-zustand-selectors-hook": "^3.0.1",
     "axios": "^1.2.1",
     "clsx": "^1.2.1",

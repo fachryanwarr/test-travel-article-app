@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { LuPencilLine } from "react-icons/lu";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { Link } from "react-router-dom";
+import CircularLoading from "../components/Elements/CircularLoading";
 import Divider from "../components/Elements/Divider";
 import AddCategoryModal from "../components/Fragments/AddCategoryModal";
+import DeleteCategoryModal from "../components/Fragments/DeleteCategoryModal";
 import PaginationControl from "../components/Fragments/Pagination";
 import UpdateCategoryModal from "../components/Fragments/UpdateCategoryModal";
 import withAuth from "../components/hoc/WithAuth";
@@ -16,7 +19,6 @@ import {
   CategoryResponse,
   Pagination,
 } from "../types/response/article";
-import DeleteCategoryModal from "../components/Fragments/DeleteCategoryModal";
 
 const CMS = () => {
   const [categories, setCategories] = useState<Category[]>();
@@ -60,13 +62,22 @@ const CMS = () => {
       <div className="flex flex-col gap-5 w-full">
         <div className="flex items-center gap-5 justify-between">
           <h4 className="h4 text-white font-bold">Category</h4>
-          <button
-            onClick={() => setShowCreateModal(true)}
-            className="btn btn-md rounded-full btn-outline-primary"
-          >
-            Add Category
-            <FaPlus />
-          </button>
+          <div className="flex items-center gap-4">
+            <Link
+              to={"/cms/dashboard"}
+              className="btn btn-md rounded-full btn-primary"
+            >
+              <MdOutlineSpaceDashboard />
+              Show Dashboard
+            </Link>
+            <button
+              onClick={() => setShowCreateModal(true)}
+              className="btn btn-md rounded-full btn-outline-primary"
+            >
+              Add Category
+              <FaPlus />
+            </button>
+          </div>
         </div>
         <Divider />
         <div className="table-wrapper">
@@ -121,9 +132,7 @@ const CMS = () => {
               ) : (
                 <tr>
                   <td colSpan={4}>
-                    <div className="w-full flex items-center justify-center">
-                      <AiOutlineLoading3Quarters className="text-xl animate-spin" />
-                    </div>
+                    <CircularLoading />
                   </td>
                 </tr>
               )}

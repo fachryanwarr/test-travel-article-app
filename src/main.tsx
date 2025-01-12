@@ -11,6 +11,7 @@ import AddArticlePage from "./pages/AddArticle";
 import ArticlePage from "./pages/Article";
 import ArticleDetailPage from "./pages/ArticleDetail";
 import CMS from "./pages/CMS";
+import Dashboard from "./pages/Dashboard";
 import Homepage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/Profile";
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/cms",
         element: <CMS />,
+      },
+      {
+        path: "/cms/dashboard",
+        element: <Dashboard />,
       },
     ],
   },
