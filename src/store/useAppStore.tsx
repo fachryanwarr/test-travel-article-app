@@ -1,7 +1,7 @@
 import { createSelectorHooks } from "auto-zustand-selectors-hook";
 import { produce } from "immer";
 import { create } from "zustand";
-import { removeToken, setToken } from "../lib/cookies";
+import { removeToken, setToken, setUserData } from "../lib/cookies";
 import { AuthResponse, User } from "../types/response/authResponse";
 
 type AppStoreType = {
@@ -34,6 +34,7 @@ const useAppStoreBase = create<AppStoreType>((set) => ({
   },
   login: (userResponse) => {
     setToken(userResponse.jwt);
+    setUserData(userResponse.user);
     set(
       produce<AppStoreType>((state) => {
         state.isAuthenticated = true;

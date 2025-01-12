@@ -102,7 +102,7 @@ const Filter = ({
             </div>
             <button
               type="submit"
-              className="btn btn-icon btn-primary h-full shrink-0 max-md:min-h-10 text-xl"
+              className="btn btn-icon btn-primary h-full max-md:min-h-10 text-xl"
             >
               <IoSearchOutline />
             </button>
