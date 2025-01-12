@@ -40,5 +40,33 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
-  text-overflow: '';
+  text-overflow: "";
+}
+
+.table-wrapper {
+  @apply w-full overflow-x-auto;
+
+  .table {
+    @apply shadow-lg rounded-xl overflow-hidden w-full align-middle;
+  
+    tbody {
+      @apply text-center;
+      
+      tr:nth-child(even) {
+        @apply bg-blue-600 bg-opacity-25 text-white;
+      }
+      tr:nth-child(odd) {
+        @apply bg-blue-700 bg-opacity-25 text-white;
+      }
+    }
+  
+    th {
+      @apply bg-blue-700 text-white font-semibold max-md:min-w-40;
+    }
+  
+    th,
+    td {
+      @apply px-5 py-3;
+    }
+  }
 }

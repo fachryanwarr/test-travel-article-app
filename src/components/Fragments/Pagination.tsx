@@ -25,7 +25,7 @@ const PaginationControl = ({
       <p className="p3 text-white mr-3 max-md:order-2">
         Showing {showing} out of {total}
       </p>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <button
           className="rounded-lg text-xl text-white btn p-1 w-7 h-7 btn-outline-primary"
           onClick={() => setPageNumber(1)}

@@ -7,6 +7,13 @@ export type ArticleResponse = {
   };
 };
 
+export type CategoryResponse = {
+  data: Category[];
+  meta: {
+    pagination: Pagination;
+  };
+};
+
 export type ArticleDetailResponse = {
   data: Article;
   meta: object;

@@ -10,6 +10,7 @@ import AboutPage from "./pages/About";
 import AddArticlePage from "./pages/AddArticle";
 import ArticlePage from "./pages/Article";
 import ArticleDetailPage from "./pages/ArticleDetail";
+import CMS from "./pages/CMS";
 import Homepage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/Profile";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/article/:id/update",
         element: <UpdateArticle />,
+      },
+      {
+        path: "/cms",
+        element: <CMS />,
       },
     ],
   },

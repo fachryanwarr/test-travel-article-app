@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import clsxm from "../../lib/clsxm";
 import useAppStore from "../../store/useAppStore";
 import Logo from "../Elements/Logo";
@@ -10,18 +10,38 @@ const Header = () => {
   const [showGuestMenu, setShowGuestMenu] = useState(false);
   const user = useAppStore.useUser();
   const navigate = useNavigate();
+  const loc = useLocation();
 
   return (
     <>
       <header className="header">
         <div className="container flex justify-between relative items-center h-full">
           <Link to={"/"}>
-            <Logo />
+            <Logo textClass="max-md:hidden" />
           </Link>
 
-          <div className="h-full flex items-center gap-2 md:gap-5">
-            <ul className="menus">
-              <Link to={"/article"}>Article</Link>
+          <div className="h-full flex items-center md:gap-4">
+            <ul className="menus max-md:mr-2">
+              <Link
+                to={"/article"}
+                className={clsxm(
+                  loc.pathname.startsWith("/article") &&
+                    "underline underline-offset-8"
+                )}
+              >
+                Article
+              </Link>
+              {user && (
+                <Link
+                  to={"/cms"}
+                  className={clsxm(
+                    loc.pathname.startsWith("/cms") &&
+                      "underline underline-offset-8"
+                  )}
+                >
+                  CMS
+                </Link>
+              )}
             </ul>
 
             <div
